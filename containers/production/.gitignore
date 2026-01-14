@@ -1,0 +1,17 @@
+ENVIRONMENTS
+ENVIRONMENTS.*
+*.env
+.env
+.env.*
+
+*.swp
+*.swo
+*~
+.DS_Store
+
+*.log
+logs/
+tmp/
+
+*.local
+*.local.*
