@@ -34,13 +34,6 @@
 git clone --depth 1 --single-branch --branch main https://github.com/buraiha/container-app-template.git {APP_NAME}
 ```
 
-### カスタマイズする場所（ここはアプリごとに変更する）
-
-- `containers/*/Dockerfile`
-- `containers/*/ENVIRONMENTS`
-- `containers/*/run.sh` の `CMD`（例：`./runserver.sh` の部分）
-- （必要なら）`HOST_PORT` / `CTR_PORT`
-
 ### 原則触らない場所（規約の核）
 
 - ディレクトリ構成（`data/`, `data_backup/`, `containers/`, `repos/`）
@@ -55,9 +48,17 @@ git clone --depth 1 --single-branch --branch main https://github.com/buraiha/con
 
 - [ ] `APP_NAME` を決めてディレクトリ作成（`$HOME/{app_name}/`）
 - [ ] `repos/{app_name}` に `git clone`
+  - repos/直下に作成した{app_name}が全体のアプリの名前となります。
 - [ ] `requirements.txt` / `Dockerfile` をアプリに合わせて調整
 - [ ] `ENVIRONMENTS` を作成（シークレットはGit管理しない）
 - [ ] `build.sh` → `run.sh` で起動確認
+
+#### カスタマイズするファイル（ここは必要であればアプリごとに変更する）
+
+- [ ] `containers/*/Dockerfile`
+- [ ] `containers/*/ENVIRONMENTS`
+- [ ] `containers/*/run.sh` の `CMD`（例：`./runserver.sh` の部分）
+- [ ] （必要なら）`HOST_PORT` / `CTR_PORT`
 
 ## ディレクトリ構成（ホスト側）
 
