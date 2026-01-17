@@ -52,6 +52,7 @@ git clone --depth 1 --single-branch --branch main https://github.com/buraiha/con
 - [ ] `repos/{app_name}` に `git clone`
 - [ ] `requirements.txt` / `Dockerfile` をアプリに合わせて調整
 - [ ] `ENVIRONMENTS` を作成（シークレットはGit管理しない）
+  - ファイル内容は `KEY=VALUE` 形式とし、VALUEは""や''等でクオートしない。"や'文字もシークレットとして扱われる可能性があるため。
 - [ ] `build.sh` → `run.sh` で起動確認
 
 #### カスタマイズするファイル（ここは必要であればアプリごとに変更する）
