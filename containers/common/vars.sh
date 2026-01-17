@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# アプリ情報を読み込む
+HOST_ENV="${APP_ROOT}/containers/.host.env"
+if [[ -f "${HOST_ENV}" ]]; then
+  # shellcheck disable=SC1090
+  source "${HOST_ENV}"
+fi
+
 # ---- app_name デフォルト ----
 APP_NAME="${APP_NAME:-default-app}"
 

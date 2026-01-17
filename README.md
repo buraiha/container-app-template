@@ -47,8 +47,9 @@ git clone --depth 1 --single-branch --branch main https://github.com/buraiha/con
 ### カスタマイズ手順（3分で適用）
 
 - [ ] `APP_NAME` を決めてディレクトリ作成（`$HOME/{app_name}/`）
+- [ ] `containers/.hosts.env` に決定した `APP_NAME` を記載する
+  - ここに設定した `APP_NAME` が全体のアプリ名となります。
 - [ ] `repos/{app_name}` に `git clone`
-  - repos/直下に作成した{app_name}が全体のアプリの名前となります。
 - [ ] `requirements.txt` / `Dockerfile` をアプリに合わせて調整
 - [ ] `ENVIRONMENTS` を作成（シークレットはGit管理しない）
 - [ ] `build.sh` → `run.sh` で起動確認
