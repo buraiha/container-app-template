@@ -15,6 +15,8 @@ if [[ ! -d "${HOST_DATA_DIR}" ]]; then
   exit 1
 fi
 
+# CMDはアプリごとに起動処理のカスタマイズが必要となる
+# 以下はサンプルとして./runserer.shという起動スクリプトを指定している。
 CMD=( "./runserver.sh" )
 if [[ "${1:-}" == "bash" ]]; then
   CMD=( "bash" )
