@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# アプリ情報を読み込む
+# ---- このファイル位置から $HOME/{app_name} を推定（最優先で確定）----
+_VARS_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+APP_ROOT="${APP_ROOT:-$(cd "${_VARS_DIR}/../.." && pwd)}"
+
+echo $_VARS_DIR
+echo $APP_ROOT
+
+# ---- ホスト専用設定（任意）を読み込む ----
 HOST_ENV="${APP_ROOT}/containers/.host.env"
 if [[ -f "${HOST_ENV}" ]]; then
   # shellcheck disable=SC1090
   source "${HOST_ENV}"
 fi
 
-# ---- app_name デフォルト ----
+# ---- app_name デフォルト（.host.env があればそっち優先）----
 APP_NAME="${APP_NAME:-default-app}"
-
-# ---- このファイル位置から $HOME/{app_name} を推定 ----
-_VARS_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-APP_ROOT="${APP_ROOT:-$(cd "${_VARS_DIR}/../.." && pwd)}"
 
 # ---- ホスト側ディレクトリ規約 ----
 HOST_DATA_DIR="${HOST_DATA_DIR:-${APP_ROOT}/data}"
