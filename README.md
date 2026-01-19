@@ -91,6 +91,7 @@ $HOME/{app_name}/
       ENVIRONMENTS      # production用環境変数（Git管理しない）
   repos/
     {app_name}/         # git clone したアプリのリポジトリ
+    ※repos直下にアプリのリポジトリを配置しないのは、例えばapp_ver1とapp_ver2のリポジトリのコンテナを切り替える運用が発生することを見込んで。
 ```
 
 ## コンテナ内ディレクトリ規約
