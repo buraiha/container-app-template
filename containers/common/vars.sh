@@ -5,9 +5,6 @@ set -euo pipefail
 _VARS_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 APP_ROOT="${APP_ROOT:-$(cd "${_VARS_DIR}/../.." && pwd)}"
 
-echo $_VARS_DIR
-echo $APP_ROOT
-
 # ---- ホスト専用設定（任意）を読み込む ----
 HOST_ENV="${APP_ROOT}/containers/.host.env"
 if [[ -f "${HOST_ENV}" ]]; then
