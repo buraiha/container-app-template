@@ -53,8 +53,4 @@ RUN pip install --no-cache-dir /wheels/* \
 # アプリ本体を /app に固める（build context = repos/{app_name}）
 COPY . /app
 
-# /data マウント前提 + 互換symlink
-RUN mkdir -p /data \
- && ln -snf /data /app/data
-
 CMD ["bash"]

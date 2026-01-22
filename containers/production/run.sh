@@ -18,8 +18,8 @@ if [[ ! -d "${HOST_DATA_DIR}" ]]; then
 fi
 
 # CMDはアプリごとに起動処理のカスタマイズが必要となる
-# 以下はサンプルとして./runserer.shという起動スクリプトを指定している。
-CMD=( "./runserver.sh" )
+# 以下はサンプルとしてKTRKNというアプリのentrypoint.shという起動スクリプトを指定している。
+CMD=( "./KTRKN/entrypoint.sh" )
 if [[ "${1:-}" == "bash" ]]; then
   CMD=( "bash" )
 fi
@@ -38,4 +38,4 @@ exec "${ENGINE}" run -it \
   -w "${CTR_APP_DIR}" \
   "${IMAGE_PRD}" \
   "${CMD[@]}"
-  
+ 
