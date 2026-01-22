@@ -49,6 +49,7 @@ git clone --depth 1 --single-branch --branch main https://github.com/buraiha/con
 - [ ] `APP_NAME` を決めてディレクトリ作成（`$HOME/{app_name}/`）
 - [ ] `containers/.hosts.env` に決定した `APP_NAME` を記載する
   - ここに設定した `APP_NAME` が全体のアプリ名となります。
+  - 必要であれば、ホスト-コンテナポートの設定も行う。
 - [ ] `repos/{app_name}` に `git clone`
 - [ ] `requirements.txt` / `Dockerfile` をアプリに合わせて調整
 - [ ] `ENVIRONMENTS` を作成（シークレットはGit管理しない）
@@ -59,7 +60,7 @@ git clone --depth 1 --single-branch --branch main https://github.com/buraiha/con
 
 - [ ] `containers/*/Dockerfile`
 - [ ] `containers/*/ENVIRONMENTS`
-- [ ] `containers/*/run.sh` の `CMD`（例：`./runserver.sh` の部分）
+- [ ] `containers/*/run.sh` の `CMD`の部分
 - [ ] （必要なら）`HOST_PORT` / `CTR_PORT`
 
 ## ディレクトリ構成（ホスト側）
