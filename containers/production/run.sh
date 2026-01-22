@@ -26,8 +26,6 @@ if [[ "${1:-}" == "bash" ]]; then
   EXEC_OPS="-it"
 fi
 
-echo "run container."
-
 if [[ "${EXEC_OPS}" == "-it" ]]; then
   # develop/対話用：ここでプロセス置き換え（以降の処理は走らない）
   exec "${ENGINE}" run -it \
