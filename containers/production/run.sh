@@ -18,24 +18,31 @@ if [[ ! -d "${HOST_DATA_DIR}" ]]; then
 fi
 
 # CMDはアプリごとに起動処理のカスタマイズが必要となる
-# 以下はサンプルとしてKTRKNというアプリのentrypoint.shという起動スクリプトを指定している。
-CMD=( "./KTRKN/entrypoint.sh" )
+# 以下はサンプルとしてアプリのentrypoint.shという起動スクリプトを指定している。
+CMD=( "./OGIMS/entrypoint.sh" )
 EXEC_OPS="-d"
 if [[ "${1:-}" == "bash" ]]; then
   CMD=( "bash" )
   EXEC_OPS="-it"
 fi
 
-if [[ "${EXEC_OPS}" == "-it" ]]; then
-  # develop/対話用：ここでプロセス置き換え（以降の処理は走らない）
-  exec "${ENGINE}" run -it \
+# コンテナに渡す環境変数の読み込み
+ENV_FILE="${SCRIPT_DIR}/ENVIRONMENTS"
+ENV_OPT=()
+if [[ -f "${ENV_FILE}" ]]; then
+  ENV_OPT=( --env-file "${ENV_FILE}" )
+fi
+
+# bash起動の時はENTRYPOINTをbashに変更する。さらにコンテナ終了時はrm。
+if [[ "${1:-}" == "bash" ]]; then
+  exec "${ENGINE}" run --rm -it \
     --name "${APP_NAME}-prd" \
+    --entrypoint bash \
     -p "${HOST_PORT}:${CTR_PORT}" \
     "${ENV_OPT[@]}" \
     -v "${HOST_DATA_DIR}:${CTR_DATA_DIR}" \
     -w "${CTR_APP_DIR}" \
-    "${IMAGE_PRD}" \
-    "${CMD[@]}"
+    "${IMAGE_PRD}"
 fi
 
 # production：detachで起動してシェルに戻る（起動チェック可能）
@@ -50,7 +57,8 @@ fi
 
 echo "check....."
 
-CHECK_URL="http://localhost:${HOST_PORT}/ktrkn/"
+# ライブチェックのURLもアプリに合わせる。
+CHECK_URL="http://localhost:${HOST_PORT}/"
 for i in {1..30}; do
   if curl -fsS -o /dev/null "$CHECK_URL"; then
     echo "サーバーは問題なく起動しています"
